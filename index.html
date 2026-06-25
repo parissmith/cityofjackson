@@ -97,8 +97,6 @@ new Chart(document.getElementById('corridorChart'),{type:'bar',data:{labels:DATA
 new Chart(document.getElementById('jobsChart'),{type:'bar',data:{labels:['Government','Healthcare','Professional Services','Education','Nonprofit','Industrial/Transportation','Hospitality/Retail','Technology'],datasets:[{label:'Relative presence in report',data:[95,85,82,70,68,55,45,25]}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,max:100}}}});
 const topBiz=[...DATA.businesses].sort((a,b)=>(b.employees||0)-(a.employees||0)).slice(0,10);
 new Chart(document.getElementById('employerChart'),{type:'bar',data:{labels:topBiz.map(d=>d.name.substring(0,22)),datasets:[{label:'Employees',data:topBiz.map(d=>d.employees)}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-new Chart(document.getElementById('zoningChart'),{type:'bar',data:{labels:DATA.zoning.map(d=>d.ZONING),datasets:[{label:'Parcels',data:DATA.zoning.map(d=>d.parcels)}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-// tables
 const ct=document.querySelector('#corridorTable tbody'); DATA.corridors.forEach(d=>ct.insertAdjacentHTML('beforeend',`<tr><td>${d.corridor}</td><td>${d.parcels.toLocaleString()}</td><td>${money(d.total_value)}</td><td>${d.acres.toFixed(1)}</td><td>${money(d.avg_value)}</td></tr>`));
 const bt=document.querySelector('#businessTable tbody'); DATA.businesses.sort((a,b)=>(b.employees||0)-(a.employees||0)).forEach(d=>bt.insertAdjacentHTML('beforeend',`<tr><td>${d.name}</td><td>${d.sector}</td><td>${d.employees?.toLocaleString()||'N/A'}</td><td>${salesM(d.sales)}</td><td>${d.street}</td></tr>`));
 // map
